@@ -25,14 +25,20 @@ RUN \
 # Install go
 WORKDIR /tmp
 RUN \
-    #wget -q https://dl.google.com/go/go1.17.6.linux-amd64.tar.gz -O go.tar.gz && \
     wget -q https://go.dev/dl/go1.20.1.linux-amd64.tar.gz -O go.tar.gz && \
     tar -C /usr/local -xzf go.tar.gz
 ENV GOPATH "/root/go"
 ENV PATH "$PATH:/usr/local/go/bin:$GOPATH/bin"
 
-#Variable de entorno para assetfinder
-ENV VT_API_KEY ""
+#############################################
+##   Variables de entorno para assetfinder ##
+#############################################
+#API KEY VirusTotal (https://developers.virustotal.com/reference)
+ENV VT_API_KEY "aaa"
+
+#API KEY FACEBOOK (https://developers.facebook.com/)
+ENV FB_APP_ID "aaa"
+ENV FB_APP_SECRET "aaa"
 
 
 
@@ -65,6 +71,8 @@ RUN \
     #Install Sublsit3r (No funciona gaire bé, el deixarem en standby)
     #git clone https://github.com/aboul3la/Sublist3r.git /tools/Sublist3r && \
     #python3 -m pip install -r /tools/Sublist3r/requirements.txt
+    ## Aqui esta el subsitut.. pero no funciona gaire bé
+    #https://github.com/fleetcaptain/Turbolist3r
 
     ## Install massdns (Necessari per a puredns)
     git clone https://github.com/blechschmidt/massdns.git /tools/massdns && \
@@ -77,34 +85,8 @@ RUN \
     ## Install wordlist commonspeak2 subdomains
     git clone https://github.com/assetnote/commonspeak2-wordlists.git /usr/share/wordlists/commonspeak2-wordlists
 
+    
 
-    
-    # Install httprobe
-    #go install github.com/tomnomnom/httprobe@latest && \
-    # Install waybackurls
-    #go install github.com/tomnomnom/waybackurls@latest && \
-    # Install aquatone
-    #go get github.com/shelld3v/aquatone && \
-    #ln -s /root/go/bin/aquatone /usr/bin/aquatone && \
-    # Install Nez Zile
-    #git clone https://github.com/bonino97/new-zile.git && \
-    #pip3 install termcolor && \
-    # Install Linkfinder
-    #git clone https://github.com/GerbenJavado/LinkFinder.git && \
-    # Install waybackurls
-    #go install github.com/tomnomnom/waybackurls@latest && \
-    
-    # Install ParamSpider
-    #git clone https://github.com/devanshbatham/ParamSpider && \
-    #pip3 install -r ParamSpider/requirements.txt && \
-    # Install Dirsearch
-    #git clone https://github.com/maurosoria/dirsearch.git && \
-    # Install ffuf
-    #go install github.com/ffuf/ffuf@latest && \
-    # Install unfurl
-    #go install github.com/tomnomnom/unfurl@latest && \
-    # Install subjs
-    #go install github.com/lc/subjs@latest
 
 # Change workdir
 WORKDIR /mainData
