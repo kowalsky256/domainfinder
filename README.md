@@ -43,7 +43,15 @@ Configure the API keys in file subfinder/provider-config.yaml
 More info: https://github.com/projectdiscovery/subfinder
 
 ## Usage
+
 ```sh
+$ git clone https://github.com/kowalsky256/domainfinder.git
+$ cd domainfinder
+
+# Configure API KEYs and build image
 $ docker build -t domainfinderimage .
-$ docker run --rm -it -v "$PWD":/root/data --name domainfinderdocker domainfinderimage python3 /root/data/domainfinder.py -d nextail.co
+```
+
+```sh
+$ docker run --rm -it -v "$PWD":/root/data --name domainfinderdocker domainfinderimage python3 /root/data/domainfinder.py -d <domainTofind>
 ```
