@@ -55,13 +55,17 @@ $ docker build -t domainfinderimage .
 Search from a single domain:
 
 ```sh
-$ docker run --rm -it -v "$PWD":/root/data --name domainfinderdocker domainfinderimage python3 /root/data/domainfinder.py -d <domainTofind>
+$ docker run --rm -it -v "$PWD":/root/data \
+	--name domainfinderdocker domainfinderimage \
+	python3 /root/data/domainfinder.py -d <domainTofind>
 ```
 
 Search from a file with multiple domains:
 
 ```sh
-$ docker run --rm -it -v "$PWD":/root/data --name domainfinderdocker domainfinderimage python3 /root/data/domainfinder.py -f <file>
+$ docker run --rm -it -v "$PWD":/root/data \
+	--name domainfinderdocker domainfinderimage \
+	 python3 /root/data/domainfinder.py -f <file>
 ```
 
 Note: The file must be in the domainfinder folder
