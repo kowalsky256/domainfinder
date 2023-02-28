@@ -1,6 +1,6 @@
 # domainfinder
 
-Script that runs various tools for subdomain search
+Dockerised script that runs various tools for search subdomains
 
 ## API KEYs configuration
 
@@ -51,6 +51,8 @@ $ cd domainfinder
 # Configure API KEYs and build image
 $ docker build -t domainfinderimage .
 ```
+
+Search for a single domian:
 
 ```sh
 $ docker run --rm -it -v "$PWD":/root/data --name domainfinderdocker domainfinderimage python3 /root/data/domainfinder.py -d <domainTofind>
