@@ -1,7 +1,6 @@
 FROM ubuntu:18.04
 
-LABEL maintainer="kowalsky" \
-    email="kowalsky.jer@gmail.com"
+LABEL maintainer="kowalsky"
 
 
 # Install packages
