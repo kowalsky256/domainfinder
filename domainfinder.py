@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import sublist3r
 import os
 import requests
 import sys
@@ -9,7 +8,7 @@ import json
 IS_FILE=False
 CONFIG_FILE_AMASS="$HOME/.config/amass/config.ini"
 AMASS_OUTPUT="subdomains-amass.txt"
-#SUBLIST3R_OUTPUT="subdomains-sublist3r.txt"
+FINDOMAIN_OUTPUT="subdomains-findomain.txt"
 CRTSH_OUTPUT="subdomains-crtsh.txt"
 ASSETFINDER_OUTPUT="subdomains-assetfinder.txt"
 SUBFINDER_OUTPUT="subdomains-subfinder.txt"
@@ -71,8 +70,8 @@ def getDomain(argv):
       	return arg
 
 
-#def searcSublister(domain):
-#	subdomains = sublist3r.main(domain, 10, SUBLIST3R_OUTPUT, ports= None, silent=False, verbose= False, enable_bruteforce= False, engines=None)
+def searchfindomain(domain):
+	os.system("findomain -t {0} -u {1}".format(domain, FINDOMAIN_OUTPUT))
 
 
 def searchAssetFinder(domain):
@@ -120,8 +119,8 @@ def searchSubdomain(domain):
 
 	print (f"{bcolors.WARNING}* Searching ", domain ,f"{bcolors.ENDC}")
 
-	#print (f"{bcolors.HEADER}[+] Searching with sublist3r{bcolors.ENDC}")
-	#searcSublister(domain)
+	print (f"{bcolors.HEADER}[+] Searching with findomain{bcolors.ENDC}")
+	searchfindomain(domain)
 
 	print (f"{bcolors.HEADER}[+] Searching with assetfinder{bcolors.ENDC}")
 	searchAssetFinder(domain)
@@ -138,8 +137,8 @@ def searchSubdomain(domain):
 	print (f"{bcolors.HEADER}[+] Searching with brute force {bcolors.ENDC}")
 	searchBruteForce(domain)
 
-	os.system("cat {0} {1} {2} {3} {4} {5} | sort -u > ".format(AMASS_OUTPUT, CRTSH_OUTPUT, ASSETFINDER_OUTPUT, SUBLIST3R_OUTPUT, SUBFINDER_OUTPUT, BRUTE_FORCE_OUTPUT) + outputFile)
-	os.system("rm {0} {1} {2} {3} {4} {5}".format(AMASS_OUTPUT, CRTSH_OUTPUT, ASSETFINDER_OUTPUT, SUBLIST3R_OUTPUT, SUBFINDER_OUTPUT, BRUTE_FORCE_OUTPUT))
+	os.system("cat {0} {1} {2} {3} {4} {5} | sort -u > ".format(AMASS_OUTPUT, CRTSH_OUTPUT, FINDOMAIN_OUTPUT, ASSETFINDER_OUTPUT, SUBFINDER_OUTPUT, BRUTE_FORCE_OUTPUT) + outputFile)
+	os.system("rm {0} {1} {2} {3} {4} {5}".format(AMASS_OUTPUT, CRTSH_OUTPUT, ASSETFINDER_OUTPUT, FINDOMAIN_OUTPUT, SUBFINDER_OUTPUT, BRUTE_FORCE_OUTPUT))
 
 	clearTheFile(outputFile)
 

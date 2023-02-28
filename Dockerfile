@@ -21,6 +21,9 @@ RUN \
     zip \
     unzip
 
+RUN \
+    python3 -m pip install requests
+
 
 # Install go
 WORKDIR /tmp
