@@ -1,36 +1,24 @@
-FROM ubuntu:18.04
+FROM golang:1.20-alpine
 
 LABEL maintainer="kowalsky"
 
 
 # Install packages
 RUN \
-    apt-get update && \
-    apt-get install -y \
-    python-setuptools \
-    python3-setuptools \
-    python3-pip \
-    chromium-browser \
+    apk add --no-cache \
     git \
+    make \
+    gcc \
+    g++ \
     nano \
     curl \
     wget \
-    python \
     python3 \
+    py3-pip \
     zip \
     unzip
 
-RUN \
-    python3 -m pip install requests
-
-
-# Install go
-WORKDIR /tmp
-RUN \
-    wget -q https://go.dev/dl/go1.20.1.linux-amd64.tar.gz -O go.tar.gz && \
-    tar -C /usr/local -xzf go.tar.gz
-ENV GOPATH "/root/go"
-ENV PATH "$PATH:/usr/local/go/bin:$GOPATH/bin"
+RUN pip install requests
 
 
 # assetfinder configuration
@@ -72,7 +60,7 @@ RUN \
     
     # Install amass 
     go install -v github.com/OWASP/Amass/v3/...@master && \
-    wget https://raw.githubusercontent.com/OWASP/Amass/master/examples/config.ini -P $HOME/.config/amass && \
+    #wget https://raw.githubusercontent.com/OWASP/Amass/master/examples/config.ini -P $HOME/.config/amass && \
     
     
     ## Substituto de sublist3r, no funciona muy bien
@@ -92,7 +80,7 @@ RUN \
 COPY amass/config.ini /root/.config/amass/config.ini
 COPY subfinder/config.yaml /root/.config/subfinder/config.yaml
 COPY subfinder/provider-config.yaml /root/.config/subfinder/provider-config.yaml
-COPY domainfinder.py /root/data/domainfinder.py
+#COPY domainfinder.py /root/data/domainfinder.py
 
 # Change workdir
 WORKDIR /root/data
