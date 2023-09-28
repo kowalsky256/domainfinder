@@ -105,7 +105,7 @@ def searchCrtshByDomain(domain):
 
 
 def searchAmass(domain):
-	os.system("amass enum -d {0} -o {1} -noalts --config {2}".format(domain, AMASS_OUTPUT, CONFIG_FILE_AMASS))
+	os.system("amass enum -passive -d {0} -o {1} --config {2}".format(domain, AMASS_OUTPUT, CONFIG_FILE_AMASS))
 
 def searchSubfinder(domain):
 	os.system("subfinder -all -d {0} -o {1}".format(domain, SUBFINDER_OUTPUT))

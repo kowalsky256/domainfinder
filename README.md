@@ -32,13 +32,13 @@ More info: https://github.com/tomnomnom/assetfinder#implemented
 
 
 ### Amass configuration
-Configure the API keys in file amass/config.ini
+Configure the API keys in file config/amass/config.ini
 
 More info: https://github.com/OWASP/Amass/blob/master/doc/user_guide.md
 
 
 ### subfinder configuration
-Configure the API keys in file subfinder/provider-config.yaml
+Configure the API keys in file config/subfinder/provider-config.yaml
 
 More info: https://github.com/projectdiscovery/subfinder
 
@@ -56,6 +56,7 @@ Search from a single domain:
 
 ```sh
 $ docker run --rm -it -v "$PWD":/root/data \
+    -v "$PWD"/config:/root/.config \
 	--name domainfinderdocker domainfinderimage \
 	python3 /root/data/domainfinder.py -d <domainTofind>
 ```
@@ -64,6 +65,7 @@ Search from a file with multiple domains:
 
 ```sh
 $ docker run --rm -it -v "$PWD":/root/data \
+    -v "$PWD"/config:/root/.config \
 	--name domainfinderdocker domainfinderimage \
 	 python3 /root/data/domainfinder.py -f <file>
 ```
