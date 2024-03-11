@@ -19,7 +19,7 @@ RUN \
     openssl \
     unzip
 
-RUN pip install requests
+RUN pip install requests --break-system-packages
 
 
 # assetfinder configuration
